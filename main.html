@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Fox-McHarg-Gilmour Dog Ventricular Cell Model</title>
+	<script src="RGraph.common.core.js" ></script>
+	    <script src="RGraph.line.js" ></script>
+
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+<style>
+  #labelN{
+    font-weight: bold;
+
+  }
+  body {
+    font-family: Arial;
+    position: fixed;
+}
+
+pre.code {
+    padding: 5px;
+    background-color: #eee;
+    border: 2px dashed gray;
+    margin-top: 0;
+    margin-bottom: 40px;
+    overflow-x: auto;
+}
+
+pre.code span {
+    color: green;
+}
+
+pre.code span span {
+    color: red;
+}
+  </style>
+
+</head>
+	<body onload="graphplotted()">
+<div class = "panel panel-primary">
+   <div class = "panel-heading">
+      <h3 class = "panel-title" style="text-align:center;">Fox-McHarg-Gilmour Dog Ventricular Cell Model</h3>
+   </div>
+    <div class = "panel-body" >
+	<form class="well" class="form-inline" style="margin-top:30px; margin-left:50px; margin-right: 100px">
+	<button id=" main" class="btn btn-primary " style="width:80px;"type="button" onclick="newgraphplotted()">Start</button>
+    <label style="padding-left:10px"id="labelN">N (s1's):
+    <input class="form-control" type="text" name="N (s1's)" value="2"></label> 
+    <label style="padding-left:10px" id="labels1">S1 (bcl):
+    <input class="form-control" type="text" name="S1 (bcl)" value="430"></label> 
+    <label style="padding-left:10px" id="labels2">S2 (bcl):
+    <input class="form-control" type="text" name="S2 (bcl)" value="200"></label> 
+    </form>
+  	    <canvas style="float:left"id="cvs" width="600" height="420">[No canvas support]</canvas>
+  <div style="float:left"class="well" class="container" style="margin-right: 250px; margin-left: 200px;  ">
+  <form role="form">
+    <div class="checkbox">
+	<button id=" "class="btn btn-primary" style="width:80px;"type="button">Replot</button>
+     <label style="padding-left:50px; padding-bottom:20px; padding-top:30px;"><input type="checkbox" id="myCheck" value="" >Voltage</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" value="">d gate</label>
+      <label style="padding-left:70px; padding-bottom:20px;"><input type="checkbox" value="">m gate</label>
+    </div>
+     <div class="checkbox">
+      <label><input type="checkbox" value="">h gate</label>
+      <label style="padding-left:70px; padding-bottom:20px;"><input type="checkbox" value="">j gate</label>
+    </div>
+     <div class="checkbox">
+      <label><input type="checkbox" value="">fca gate</label>
+      <label style="padding-left:58px; padding-bottom:20px;"><input type="checkbox" value="">kr gate</label>
+    </div>
+     <div class="checkbox">
+      <label><input type="checkbox" value="">ks gate</label>
+      <label style="padding-left:62px; padding-bottom:20px;"><input type="checkbox" value="">xto gate</label>
+    </div>
+         <div class="checkbox">
+      <label><input type="checkbox" value="">yto gate</label>
+      <label style="padding-left:58px; padding-bottom:20px;"><input type="checkbox" value="">xf gate</label>
+    </div>
+         <div class="checkbox">
+      <label><input type="checkbox" value="">[Ca]i gate</label>
+      <label style="padding-left:55px; padding-bottom:20px;"><input type="checkbox" value="">[Ca]sr gate</label>
+    </div>
+  </form>
+  
+</div>
+<div class="well" style=" margin-left:30px; margin-top:450px; margin-right:100px;">
+   <button id=" "class="btn btn-primary " style="width:120px;" type="button" onclick ='window.open ("PlotConditions.html",
+"mywindow","menubar=1,resizable=no,width=180,height=550");'>Plot Currents</button>
+   <select class="selectpicker">
+      <option>gkr=0.0136</option>
+      <option>gkr=0.072</option>
+</select>
+</div>
+</body>	
+ <script>
+ function graphplotted(){
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: [10],
+            options: {
+                textAccessible: true,
+                scaleZerostart: true
+            }
+        }).on('beforedraw', function (obj)
+        { 
+            RGraph.clear(obj.canvas, 'white')
+        }).trace2();
+      }
+
+      function newgraphplotted(){
+            document.getElementById("myCheck").checked = true;
+
+        var line = new RGraph.Line({
+            id: 'cvs',
+            data: [10,0,8,0.5,8],
+            options: {
+                textAccessible: true,
+                scaleZerostart: true
+            }
+        }).on('beforedraw', function (obj)
+        {
+            RGraph.clear(obj.canvas, 'white')
+        }).trace2();
+      }
+    </script>
+</html>
